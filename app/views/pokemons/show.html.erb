@@ -1,0 +1,40 @@
+<%= link_to"Pokedex", root_path, class:" custom-color fs-3" %>
+<h4 class="mt-2"><p>You hear a rustle in the tall grass...</p> <p>A wild Pokémon appears !</p></h4>
+
+<div class="container">
+  <div class="row">
+
+     <div class="col">
+      <div class="pokemon-card">
+      <div class="img">
+        <%= cl_image_tag @pokemon.photo.key, height: 300, width: 200, crop: :fill %>
+      </div>
+      <div class="name fs-3">
+        <%= @pokemon.name %>
+      </div>
+      <div class="element fs-4 pb-3 text-dark">
+      <%= @pokemon.element_type %>
+      </div>
+      </div>
+      </div>
+
+      <div class="col">
+        <div class="catch-pokemon">
+           <p>Do you dare to catch this pokemon ?</p>
+
+          <div class="form text-dark">
+
+          <%= simple_form_for [@pokemon, Pokeball.new] do |f| %>
+          <%= f.label  "Who's trying their luck ?"%>
+          <%= f.association :trainer, collection: Trainer.all, input_html: { class: "bg-secondary text-white" } %>
+
+          <%= f.input :location, label: "Where are you?", input_html: { class: "bg-secondary text-white" } %>
+          <%= f.input :caught_on, as: :date, label: "When?", input_html: { class: "bg-secondary text-white" } %>
+          <%= f.submit "Catch !", class: "btn btn-primary fw-bold" %>
+          <% end %>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</div>

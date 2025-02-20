@@ -1,0 +1,22 @@
+
+<div class="pokedex mt-3">Pokedex</div>
+<%= link_to "Trainers", trainers_path, class:" custom-color fs-2" %>
+
+<div class="pokemons">
+  <% @pokemons.each do |pokemon| %>
+    <%= link_to pokemon_path(pokemon), class:"pokemon-card-link" do %>
+    <div class="pokemon-card">
+      <div class="img">
+        <%= cl_image_tag pokemon.photo.key, height: 250, width: 200, crop: :fill %>
+      </div>
+      <div class="name fs-3">
+        <%= pokemon.name %>
+      </div>
+      <div class="element fs-4 pb-3 text-dark">
+      <%= pokemon.element_type %>
+      </div>
+
+    </div>
+    <%end%>
+  <% end %>
+</div>

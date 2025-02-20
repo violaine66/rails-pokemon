@@ -1,0 +1,31 @@
+<%= link_to "< Trainers", trainers_path, class:"custom-color fs-3" %>
+<div class="title mt-3"><%= @trainer.name%> is going to catch 'em all !</div>
+
+<div class="text-center fs-2">Their Pokemon </div>
+<div class="trainer-container">
+  <div class="trainer-card my-3 p-5">
+    <div class="trainer-show">
+      <div class="img pb-2">
+        <%= cl_image_tag @trainer.photo.key, height: 300, width:250 %>
+      </div>
+      <div class="infos">
+        <div class="fs-2"> <%= @trainer.name %></div>
+        <div class="fs-3"><%= @trainer.age %> years old</div>
+      </div>
+      </div>
+  </div>
+
+
+    <div class="pokemon-catched" >
+        <% @pokeballs.each do |pokeball| %>
+          <div class="pokeball-card px-3">
+            <%= cl_image_tag pokeball.pokemon.photo.key, width: 150, height: 280, crop: :fill %>
+              <p class= "fs-2"><%= pokeball.pokemon.name %></p>
+              <p class="text-dark fs-3">caught on <%= pokeball.caught_on %>
+              at <%= pokeball.location  %></p>
+              <button type="button" class="btn btn-danger mb-3">Release</button>
+          </div>
+        <% end %>
+    </div>
+
+</div>
