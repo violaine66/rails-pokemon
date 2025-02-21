@@ -1,8 +1,4 @@
 class PokeballsController < ApplicationController
-  # def new
-  #   @pokeball = Pokeball.new
-  # end
-
   def create
     @pokemon = Pokemon.find(params[:pokemon_id])
     @trainer = Trainer.find(pokeball_params[:trainer_id])
@@ -15,6 +11,13 @@ class PokeballsController < ApplicationController
       redirect_to pokemons_path, status: :unprocessable_entity
     end
   end
+
+    def destroy
+      @pokeball = Pokeball.find(params[:id])
+      @pokeball.destroy
+      redirect_to trainer_path(@pokeball.trainer), status: :see_other
+    end
+
 
   private
   def pokeball_params

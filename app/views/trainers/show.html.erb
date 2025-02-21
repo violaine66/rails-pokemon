@@ -23,7 +23,10 @@
               <p class= "fs-2"><%= pokeball.pokemon.name %></p>
               <p class="text-dark fs-3">caught on <%= pokeball.caught_on %>
               at <%= pokeball.location  %></p>
-              <button type="button" class="btn btn-danger mb-3">Release</button>
+              <%= link_to "Release", pokeball_path(pokeball),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                   class:"btn btn-danger mb-3" %>
+                   <%= link_to "", pokemon_path(pokeball.pokemon), class: "pokemon-card-link" %>
           </div>
         <% end %>
     </div>
