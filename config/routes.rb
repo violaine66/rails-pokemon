@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     resources :pokeballs, only: [:create]
   end
   get 'search', to: 'pokemons#search', as: 'search_pokemons'
+  get 'random', to: 'pokemons#random', as: 'random_pokemon'
   resources :pokeballs, only: [:destroy]
 end

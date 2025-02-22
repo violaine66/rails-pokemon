@@ -11,6 +11,12 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.find(params[:id])
   end
 
+  def random
+    pokemon_random = Pokemon.order("RANDOM()").take
+    redirect_to pokemon_path(pokemon_random)
+  end
+
+
   def search
     search_query = params[:search][:query]
     if search_query.present?

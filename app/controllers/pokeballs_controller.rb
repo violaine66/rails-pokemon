@@ -5,12 +5,18 @@ class PokeballsController < ApplicationController
     @pokeball = Pokeball.new(pokeball_params)
     @pokeball.pokemon = @pokemon
     @pokeball.trainer = @trainer
-    if @pokeball.save
-      redirect_to trainer_path(@trainer)
+    chance = [1, 2].sample
+    should_save = chance == 1
+    if should_save == false
+      redirect_to trainer_path(@trainer),  notice: " You're just miss it! It got away" and return
+    end
+    if  @pokeball.save
+        redirect_to trainer_path(@trainer), notice: "Congratulations! Pokemon catched!"
     else
-      redirect_to pokemons_path, status: :unprocessable_entity
+      render "pokemons/show", notice: "error"
     end
   end
+
 
     def destroy
       @pokeball = Pokeball.find(params[:id])
